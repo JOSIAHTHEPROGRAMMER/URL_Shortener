@@ -1,0 +1,210 @@
+﻿/* ===== Base ===== */
+body {
+    font-family: 'Inter', sans-serif;
+    background: #0a0a0f;
+    color: #fff;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+
+/* ===== Background ===== */
+.neural-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at center, #1a1a25 0%, #0a0a0f 100%);
+    z-index: -3;
+}
+
+.geometric-shapes {
+    position: fixed;
+    inset: 0;
+    z-index: -2;
+    overflow: hidden;
+}
+
+.shape {
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    background: linear-gradient(135deg, rgba(79,70,229,0.2), rgba(236,72,153,0.2));
+    border-radius: 50%;
+    animation: float 12s infinite ease-in-out;
+}
+
+    .shape:nth-child(1) {
+        top: 10%;
+        left: 15%;
+    }
+
+    .shape:nth-child(2) {
+        bottom: 20%;
+        right: 20%;
+        animation-delay: 2s;
+    }
+
+    .shape:nth-child(3) {
+        top: 30%;
+        right: 10%;
+        animation-delay: 4s;
+    }
+
+    .shape:nth-child(4) {
+        bottom: 15%;
+        left: 25%;
+        animation-delay: 6s;
+    }
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0) scale(1);
+    }
+
+    50% {
+        transform: translateY(-30px) scale(1.05);
+    }
+}
+
+.neural-lines {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    overflow: hidden;
+}
+
+.neural-line {
+    position: absolute;
+    width: 2px;
+    height: 100%;
+    background: linear-gradient(to bottom, rgba(79,70,229,0.3), transparent);
+    animation: moveLine 8s linear infinite;
+}
+
+    .neural-line:nth-child(1) {
+        left: 20%;
+        animation-delay: 0s;
+    }
+
+    .neural-line:nth-child(2) {
+        left: 50%;
+        animation-delay: 3s;
+    }
+
+    .neural-line:nth-child(3) {
+        left: 80%;
+        animation-delay: 6s;
+    }
+
+@keyframes moveLine {
+    0% {
+        transform: translateY(-100%);
+    }
+
+    100% {
+        transform: translateY(100%);
+    }
+}
+
+/* ===== Hero Section ===== */
+.hero {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    min-height: 100vh;
+    padding: 2rem;
+    position: relative;
+    z-index: 1;
+}
+
+.hero-content {
+    max-width: 600px;
+}
+
+.hero-subtitle {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #818cf8;
+    display: block;
+    margin-bottom: 0.5rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.hero h1 {
+    font-size: 3rem;
+    font-weight: 800;
+    margin-bottom: 1rem;
+    background: linear-gradient(90deg, #6366f1, #ec4899);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.hero-description p {
+    font-size: 1.1rem;
+    color: #cbd5e1;
+    margin-bottom: 2rem;
+}
+
+/* ===== Form & Buttons ===== */
+.url-input {
+    width: 100%;
+    padding: 0.8rem 1rem;
+    border: none;
+    border-radius: 0.5rem;
+    margin-bottom: 1rem;
+    font-size: 1rem;
+}
+
+.cta-button {
+    display: inline-block;
+    background: linear-gradient(90deg, #6366f1, #ec4899);
+    color: white;
+    border: none;
+    padding: 0.8rem 1.5rem;
+    border-radius: 0.5rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+    text-decoration: none;
+}
+
+    .cta-button:hover {
+        transform: scale(1.05);
+    }
+
+/* ===== Result Box ===== */
+.result {
+    margin-top: 1.5rem;
+    padding: 1rem;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 0.5rem;
+    backdrop-filter: blur(8px);
+}
+
+    .result a {
+        color: #818cf8;
+        text-decoration: none;
+        font-weight: 600;
+    }
+
+
+/* ===== Footer ===== */
+.footer {
+    background: rgba(20, 20, 30, 0.85);
+    color: #cbd5e1;
+    text-align: center;
+    padding: 1rem;
+    padding-bottom: 0;
+    font-size: 0.9rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(6px);
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+}

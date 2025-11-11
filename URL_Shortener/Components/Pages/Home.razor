@@ -1,0 +1,89 @@
+﻿@page "/"
+@using NetcodeHub.Packages.Extensions.Clipboard
+@using URL_Shortener.Services
+
+@inject IService UrlService
+@inject IClipboardService clipboardService
+@rendermode InteractiveServer
+
+<PageTitle>URL Shortener</PageTitle>
+
+<!-- Background Layers -->
+<div class="neural-background"></div>
+<div class="geometric-shapes">
+    <div class="shape"></div>
+    <div class="shape"></div>
+    <div class="shape"></div>
+    <div class="shape"></div>
+</div>
+<div class="neural-lines">
+    <div class="neural-line"></div>
+    <div class="neural-line"></div>
+    <div class="neural-line"></div>
+</div>
+
+<!-- Hero -->
+<section class="hero">
+    <div class="hero-content">
+        <span class="hero-subtitle">Let us shorten that link</span>
+
+        <div class="hero-description">
+            <p>Paste your long link below and get a sleek short URL instantly.</p>
+        </div>
+
+        <EditForm Model="@this" OnValidSubmit="ShortenUrlClicked">
+            <InputText @bind-Value="Value" class="url-input" placeholder="Enter your long URL..." />
+            <button type="submit" class="cta-button">Shorten</button>
+        </EditForm>
+
+        @if (!string.IsNullOrEmpty(ShortUrl))
+        {
+            <div class="result glass">
+                <p>Your shortened URL:</p>
+                <a href="@ShortUrl" target="_blank">@ShortUrl</a>
+                <button class="copy-btn" @onclick="CopyBtnClicked">
+                    @(Copied ? "Copied!" : "Copy")
+                </button>
+            </div>
+        }
+    </div>
+</section>
+
+@code {
+    string Value = string.Empty;
+    string ShortUrl = string.Empty;
+    bool Copied = false;
+
+    async Task CopyBtnClicked()
+    {
+        if (ShortUrl == "Invalid Url Provided" || string.IsNullOrEmpty(ShortUrl))
+        {
+            ShortUrl = "Nothing to be copied";
+            Copied = false;
+            return;
+        }
+
+        await clipboardService.CopyAsync(ShortUrl);
+        Copied = true;
+    }
+
+    async Task ShortenUrlClicked()
+    {
+        ShortUrl = string.Empty;
+        Copied = false;
+
+        if (string.IsNullOrEmpty(Value))
+            return;
+
+        string shortcode = await UrlService.ShortenUrlAsync(Value);
+
+        if (string.IsNullOrEmpty(shortcode))
+        {
+            ShortUrl = "Invalid Url Provided";
+            return;
+        }
+
+        ShortUrl = shortcode; 
+    }
+}
+
