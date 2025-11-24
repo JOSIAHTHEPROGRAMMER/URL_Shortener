@@ -15,7 +15,7 @@ This project is a URL Shortener application built using .NET 9 Blazor Interactiv
 ## 📋 Prerequisites
 
 - [.NET 9 SDK](https://dotnet.microsoft.com/download/dotnet/9.0)
-- SQL Server (LocalDB, Express, or full version)
+- SQLite
 - Visual Studio 2022 or VS Code with C# extensions
 
 ## 🛠️ Installation & Setup
